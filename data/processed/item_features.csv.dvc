@@ -1,0 +1,5 @@
+outs:
+- md5: 8343f8c94aee2096570d6148506337a9
+  size: 100476
+  hash: md5
+  path: item_features.csv
