@@ -1,0 +1,14 @@
+﻿pandas
+numpy
+scikit-learn
+implicit
+mlflow
+dvc
+feast
+great-expectations
+fastapi
+uvicorn
+streamlit
+evidently
+pytest
+optuna

@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/FC/Desktop/movie-recommender-mlops/mlruns/1/models/m-cb9577e3f4184c9392ba862dee526f40/artifacts
+flavors:
+  python_function:
+    artifacts:
+      model_path:
+        path: artifacts\model.pkl
+        uri: model.pkl
+    cloudpickle_version: 3.1.2
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.11.9
+    streamable: false
+mlflow_version: 3.14.0
+model_id: m-cb9577e3f4184c9392ba862dee526f40
+model_size_bytes: 139494
+model_uuid: m-cb9577e3f4184c9392ba862dee526f40
+prompts: null
+run_id: 8aa8ba3856fa4aab98542b51bea201eb
+utc_time_created: '2026-07-10 17:25:26.129377'
