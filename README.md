@@ -1,4 +1,5 @@
-﻿# Movie Recommender MLOps
+﻿![CI](https://github.com/quratalvi11-dotcom/movie-recommender-mlops/actions/workflows/ci.yml/badge.svg)
+# Movie Recommender MLOps
 
 An end-to-end MLOps project that recommends movies to users based on their rating history, covering the full machine learning lifecycle from data ingestion to automated retraining.
 
