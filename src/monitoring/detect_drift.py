@@ -37,6 +37,7 @@ def detect_drift(reference: pd.DataFrame, current: pd.DataFrame) -> bool:
     return drift_detected
 
 if __name__ == "__main__":
+    import os
     ratings = load_ratings()
     new_batch = simulate_new_batch(ratings, shift=True)
     drift_found = detect_drift(ratings, new_batch)
@@ -45,3 +46,9 @@ if __name__ == "__main__":
         print("ALERT: Significant drift detected. Retraining recommended.")
     else:
         print("No significant drift detected.")
+
+    # Write result for GitHub Actions to read (no-op if not running in CI)
+    github_output = os.environ.get("GITHUB_OUTPUT")
+    if github_output:
+        with open(github_output, "a") as f:
+            f.write(f"drift_detected={str(drift_found).lower()}\n")

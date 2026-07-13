@@ -1,0 +1,50 @@
+name: Drift Check & Retrain
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly, Sunday midnight UTC
+  workflow_dispatch:
+
+jobs:
+  check-and-retrain:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download MovieLens dataset
+        run: |
+          New-Item -ItemType Directory -Force -Path data/raw
+          cd data/raw
+          Invoke-WebRequest -Uri "https://files.grouplens.org/datasets/movielens/ml-100k.zip" -OutFile "ml-100k.zip"
+          Expand-Archive -Path "ml-100k.zip" -DestinationPath "."
+          cd ../..
+        shell: pwsh
+
+      - name: Check for drift
+        id: drift_check
+        run: python src/monitoring/detect_drift.py
+        shell: pwsh
+
+      - name: Retrain (only if drift detected)
+        if: steps.drift_check.outputs.drift_detected == 'true'
+        run: |
+          python src/training/tune.py
+          python src/training/register_best_model.py
+        shell: pwsh
+
+      - name: Upload drift report
+        uses: actions/upload-artifact@v4
+        with:
+          name: drift-report
+          path: drift_report.html
