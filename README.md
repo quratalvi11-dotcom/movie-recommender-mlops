@@ -36,4 +36,11 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-More detailed setup and architecture docs coming soon.
+## Run with Docker (no local setup required)
+
+```bash
+docker pull qurat38027/movie-recommender-api:latest
+docker run -p 8000:8000 qurat38027/movie-recommender-api:latest
+```
+
+Then visit `http://localhost:8000/docs` to try the API.
