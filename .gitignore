@@ -219,3 +219,6 @@ __marimo__/
 
 
 src/features/feature_repo/data/
+
+drift_report.html
+debug_result.json
